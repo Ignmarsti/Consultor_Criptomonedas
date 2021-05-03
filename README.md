@@ -1,4 +1,4 @@
-### Consultor criptomonedas
+# Consultor criptomonedas
 
 El propósito de este proyecto es crear un dispositivo que muestre por una matriz de LED´s el precio actual, el mínino y el máximo en 24 horas, de las criptomonedas que queramos. En mi caso mostrará los datos de ETHER, AVAX, ATOM y DOT.
 Mis nociones de IoT son bastante básicas, por lo que si alguién tiene alguna sugerencia o comentario será bienvenido en [esta sección](https://github.com/Ignmarsti/Consultor_Criptomonedas/issues "esta sección").
@@ -404,7 +404,7 @@ Conexiones matriz de LED´s con la NodeMcu
 ![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/179748231_10219580067554165_2674197942034751265_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=730e14&_nc_ohc=cI0qpV-vW0oAX9ju56b&_nc_ht=scontent-mad1-1.xx&oh=4f174b51a483946ceba8a437cdfc98b8&oe=60B2591C)
 
 
-## Anexo
+# Anexo
 
 En este anexo vamos a explicar como hemos obtenido las URL que usaremos para demandar los datos. 
 
