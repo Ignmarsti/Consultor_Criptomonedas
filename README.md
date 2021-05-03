@@ -14,28 +14,34 @@ No vamos a profundizar mucho en el tema de HTTP porque es bastante extenso. Noso
 
 # Materiales
 1. NodeMcu: ESP8266 12-E
-1. MAX7219 de 8x8 LED´s (x8)
-1. Wire Jumpers hembra-hembra (x5)
+![](https://www.infootec.net/wp-content/uploads/2015/11/nodemcu_i.jpg)
+1. MAX7219 de 8x8 LED´s (x8) (en la imagen vienen 4 unidos)
+![](https://opencircuit.es/resources/content/8abdbe617bc8a/crop/900-600/MAX7219-4x-Dot-matrix-module.jpg)
+1. Wire Jumpers hembra-hembra (x5) (como los de la imagen de arriba)
+
+1. [IDE de Arduino](https://www.arduino.cc/en/software "IDE de Arduino")
 
 # Librerías
-1. ESP8266WiFi.h
+1. *ESP8266WiFi.h*:  Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFi.h)
 
-		Librería necesaria para conectarse a la red WiFi. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFi.h "aquí")
-1. ESP8266WiFiMulti.h
+		Librería necesaria para conectarse a la red WiFi.
+1. *ESP8266WiFiMulti.h*: Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFiMulti.h "aquí")
 
-		Librería por si queremos tener varias redes posibles a las que conectarnos y que se conecte automáticamente a la que mejor señal tenga. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFiMulti.h "aquí").
-1. ESP8266HTTPClient.h
+        Librería por si queremos tener varias redes posibles a las que conectarnos y que se conecte automáticamente a la que mejor señal tenga. 
 
-		Nos permitirá usar ESP8266 como cliente. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266HTTPClient "aquí")
-1. MD_Parola.h
+1. *ESP8266HTTPClient.h*: Puedes descargarla [aquí](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266HTTPClient "aquí")
 
-		Librería para controlar matrices de LED´s conectadas entre si. Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_Parola "aquí")
-1. MD_MAX72xx.h
+		Nos permitirá usar ESP8266 como cliente. 
+1. *MD_Parola.h*: Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_Parola "aquí")
 
-		Librería para controlar una matriz de LED´s de 8x8. Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_MAX72XX "aquí")
-1. SPI.h
+		Librería para controlar matrices de LED´s conectadas entre si. 
+1. *MD_MAX72xx.h*: Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_MAX72XX "aquí")
 
-		Librería necesaria para la comunicación con dispositivos SPI
+		Librería para controlar una matriz de LED´s de 8x8. 
+
+1. *SPI.h*
+
+		Librería necesaria para la comunicación con dispositivos SPI. Viene incluida en el IDE de arduino.
 
 # Código
 Primero comenzaremos incluyendo las librerías que controlan la conexión WiFi y HTTP:
