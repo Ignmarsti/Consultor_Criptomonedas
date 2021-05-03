@@ -17,8 +17,8 @@
 MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 //----------------WiFi.begin("ssid", "password")-------------///;
-const char* ssid = "TU RED";
-const char* password = "TU CONTRASEÑA";
+const char* ssid = "MOVISTAR_382F";
+const char* password = "77DBFD8164501F201C5C";
 
 ESP8266WiFiMulti WiFiMulti;
 
@@ -26,11 +26,11 @@ void setup() {
   Serial.begin(115200);
   P.begin();// iniciamos el MAX7219
   
-  for(uint8_t t = 4; t > 0; t--) {
+  /*for(uint8_t t = 4; t > 0; t--) {
     Serial.printf("[SETUP] WAIT %d...\n", t);
     Serial.flush();//Espera a que se complete la transmisión de los datos en serie salientes
     delay(1000);
-  }
+  }*/
   WiFi.mode(WIFI_STA);///Para conectarla a una red Wi-Fi a través de un acces point (SSID)
   WiFiMulti.addAP(ssid,password);///Seleccionamos la red a la que nos queremos conectar (con esta librería podríamos conectarnos a varias)
 }
@@ -314,17 +314,28 @@ void loop() {
         String veinticuatrohoras = "Max:";
         Serial.println(http11.getString());///Imprimimos la respuesta
         veinticuatrohoras += preciomaxi;
-        P.print(veinticuatrohoras);
-      }
+      P.print(veinticuatrohoras);
     }
-    
-    else{
-      Serial.printf("[HTTP] GET... Failed, error: %s\n", http.errorToString(httpCode11).c_str());
-    }
-    delay(1000);
-    
-    http.end();
-
+  }
+  
+  else{
+    Serial.printf("[HTTP] GET... Failed, error: %s\n", http.errorToString(httpCode11).c_str());
   }
   delay(1000);
+  
+  http.end();
+  http1.end();
+  http2.end();
+  http3.end();
+  http4.end();
+  http5.end();
+  http6.end();
+  http7.end();
+  http8.end();
+  http9.end();
+  http10.end();
+  http11.end();
+
+}
+delay(1000);
 }
