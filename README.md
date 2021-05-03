@@ -13,22 +13,28 @@ En nuestro caso, la API funcionara a través de internet, por lo que entra en ju
 No vamos a profundizar mucho en el tema de HTTP porque es bastante extenso. Nosotros como clientes solo utilizaremos para este proyecto la solicitud GET, que se usan solo para recuperar datos.
 
 # Materiales
--NodeMcu: ESP8266 12-E
--MAX7219 de 8x8 LED´s (x8)
--Wire Jumpers hembra-hembra (x5)
+1. NodeMcu: ESP8266 12-E
+1. MAX7219 de 8x8 LED´s (x8)
+1. Wire Jumpers hembra-hembra (x5)
 
 # Librerías
 1. ESP8266WiFi.h
+
 		Librería necesaria para conectarse a la red WiFi. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFi.h "aquí")
 1. ESP8266WiFiMulti.h
+
 		Librería por si queremos tener varias redes posibles a las que conectarnos y que se conecte automáticamente a la que mejor señal tenga. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/ESP8266WiFiMulti.h "aquí").
 1. ESP8266HTTPClient.h
+
 		Nos permitirá usar ESP8266 como cliente. Puedes descargarla [aquí](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266HTTPClient "aquí")
 1. MD_Parola.h
+
 		Librería para controlar matrices de LED´s conectadas entre si. Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_Parola "aquí")
 1. MD_MAX72xx.h
+
 		Librería para controlar una matriz de LED´s de 8x8. Puedes descargarla [aquí](https://github.com/MajicDesigns/MD_MAX72XX "aquí")
 1. SPI.h
+
 		Librería necesaria para la comunicación con dispositivos SPI
 
 # Código
@@ -387,3 +393,49 @@ void loop() {
   http11.end();
 ```
 
+# Montaje
+
+La mayor complicación que he tenido a la hora de montar el dispositivo ha sido a la hora de unir los dos módulos de 8x32 LED´s de los que disponía, ya que los terminales de salia forman 90 grados con respecto a la base, por lo que he tenido que doblarlos hasta el punto de poder enganchar uno con otro. Esto probablemente se podrá hacer mucho mejor con un soldador y algo de estaño.
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/179765178_10219580067474163_3422660642364219507_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_ohc=0zyB0Ets42EAX8dMxlW&_nc_ht=scontent-mad1-1.xx&oh=3e1ff741da129a9f2a02f4aacfec6e00&oe=60B0497F)
+
+Conexiones matriz de LED´s con la NodeMcu
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/179748231_10219580067554165_2674197942034751265_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=730e14&_nc_ohc=cI0qpV-vW0oAX9ju56b&_nc_ht=scontent-mad1-1.xx&oh=4f174b51a483946ceba8a437cdfc98b8&oe=60B2591C)
+
+
+## Anexo
+
+En este anexo vamos a explicar como hemos obtenido las URL que usaremos para demandar los datos. 
+
+ThingSpeak es una API y aplicación de código abierto para el Internet de las Cosas ([IoT](https://descubrearduino.com/internet-de-las-cosas/)) que nos permite almacenar y recopilar datos de objetos conectados a través del protocola HTTP a través de internet o de una red local.
+
+Con ThingSpeak, un usario puede crear aplicaciones de datos de sensores, aplicaciones de seguimiento de la ubicación y una "red social" para los objetos conectados, con actualizaciones de estado.
+
+Lo primero que debemos hacer es crear una cuenta en ThingSpeak.
+
+![](https://descubrearduino.com/wp-content/uploads/2019/03/registro-de-usuario-en-ThingSpeak-768x327.jpg)
+
+Una vez creada nuestra cuenta, nos iremos a la pestaña "Apps" y seleccionaremos la opción "ThingHTTP". Aquí se nos abrirá la siguiente ventana:
+
+ ![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/181260365_10219595756466378_7753637805987132255_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mv77UsUaVhIAX-3gWyu&_nc_ht=scontent-mad1-1.xx&oh=99a9243d21c845a07b36090f90b9a16c&oe=60B39023)
+
+En vuestro caso esta ventana aparecerá vacia (sin ningun canal). Hacemos click en "New ThingHTTP":
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/181431126_10219595756426377_4019829213122983331_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_ohc=-Dba3_qKlEcAX-4P73u&_nc_ht=scontent-mad1-1.xx&oh=6243c03406905f8f1c5715a1726318e2&oe=60B61300)
+
+En esta ventana tendremos que rellenar los datos "Name", "URL", y "Parse String". El nombre es de vuestra elección, aunque es recomendable poner un nombre que tenga relación con el dato que queramos consultar. Para obtener el dato "Parse String" lo primero que tenemos que hacer es buscar una página en la que esté el dato que queremos extraer. En nuestro caso es el precio del Ether. Para ello hemos ido a la página de [Coingecko](https://www.coingecko.com/es/monedas/ethereum).
+Una vez en esta página haremos click derecho sobre el dato que queremos obtener (en nuestro caso el precio del Ether) y seleccionamos inspeccionar.
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/181390677_10219595756186371_6091625465606094351_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_ohc=YMVk4hZXLjcAX-WDHa7&_nc_ht=scontent-mad1-1.xx&oh=fa3da5c421013eff0f4a77eb06fdea44&oe=60B49D43)
+
+
+Se nos abrirá una ventana en la que aparecerá el código de la página. Buscamos el precio y hacemos click derecho en él, seleccionando "Copy Xpath".
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/180970459_10219595756946390_1037366094687624083_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=730e14&_nc_ohc=sYzRLiurn9oAX_HOmZ3&_nc_ht=scontent-mad1-1.xx&oh=11e5f9942fa8fee1dbe479e44496ab02&oe=60B3D2CF)
+
+Volvemos a la página ThingSpeak y con el dato que hemos copiado, lo pegamos en el apartado "Parse String". En URL ponemos la dirección de dónde hemos cogido el precio. Una vez hecho esto pulsamos "Save ThingHTTP".
+
+![](https://scontent-mad1-1.xx.fbcdn.net/v/t1.6435-9/181431126_10219595756426377_4019829213122983331_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_ohc=-Dba3_qKlEcAX-4P73u&_nc_ht=scontent-mad1-1.xx&oh=6243c03406905f8f1c5715a1726318e2&oe=60B61300)
+
+Esto nos generará un enlace que será el que tengamos que copiar a la hora de usar la función GET en nuestro código.
